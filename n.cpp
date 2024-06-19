@@ -12,11 +12,9 @@ int main(){
 	int xind = 1;
 	int yind = -1;
 	int loop = 1;
-	int max_mem = 25*1*10*10;
+	int max_mem = 10*10;
 	vector<int> xline = {-width+r};
 	vector<int> yline = {height-r};
-	vector<int> _xline;
-	vector<int> _yline;
 	do{
 		if(vx>=width-r) {xind = -1;}
 		else if(vx<=-width+r+1) xind = 1;
@@ -36,8 +34,8 @@ int main(){
 						break;
 					}
 				}
-				if(xline.size()>max_mem) xline.clear();
-				if(yline.size()>max_mem) yline.clear();
+				if(xline.size()>max_mem) xline.erase(xline.begin());
+				if(yline.size()>max_mem) yline.erase(yline.begin());
 				if(r*r == (j-vx)*(j-vx) + (i-vy)*(i-vy)){
 					cout << "#";
 					xline.push_back(j);
