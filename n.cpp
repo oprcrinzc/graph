@@ -4,16 +4,19 @@
 #include<unistd.h>
 using namespace std;
 int main(){
-	int width = 46;
-	int height = 9;
-	int r = 2;
+	int width = 60;
+	int height = 20;
+	int r = 1;
 	int vx = -width+r;
 	int vy = height-r;
 	int xind = 1;
 	int yind = -1;
 	int loop = 1;
+	int max_mem = 25*1*10*10;
 	vector<int> xline = {-width+r};
 	vector<int> yline = {height-r};
+	vector<int> _xline;
+	vector<int> _yline;
 	do{
 		if(vx>=width-r) {xind = -1;}
 		else if(vx<=-width+r+1) xind = 1;
@@ -23,23 +26,18 @@ int main(){
 			for(int j=-width;j<width;j++){
 				int l = 0;
 				int b = 0;
+				int k;
+				int kk;
 				//if(mul*j==i) cout << "1";
 				//if(mul*mul >= j*j + i*i && mul*mul <= j*j + i*i) cout << mul;
-				for(int k=0;k < yline.size();k++){
-					for(int kk=0;kk < xline.size();kk++){
-						if(kk >= k){
-						if(xline.at(kk) == j &&  yline.at(k) == i){
-							l = 1;
-							//xline.erase(kk);
-							//yline.erase(k);
-							break;
-							b = 1;
-						}}
+				for( k=0;k < yline.size();k++){
+					if(xline.at(k) == j &&  yline.at(k) == i){
+						l = 1;
+						break;
 					}
-					if(b==1) break;
 				}
-				if(xline.size()>width*2) xline.clear();
-				if(yline.size()>height*2) yline.clear();
+				if(xline.size()>max_mem) xline.clear();
+				if(yline.size()>max_mem) yline.clear();
 				if(r*r == (j-vx)*(j-vx) + (i-vy)*(i-vy)){
 					cout << "#";
 					xline.push_back(j);
@@ -58,7 +56,7 @@ int main(){
 		}
 		vx += xind;
 		vy += yind;
-		usleep(50000);
+		usleep(20000);
 		system("clear");
 	} while(loop==1);
 }
