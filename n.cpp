@@ -50,6 +50,7 @@ int main(){
 			if(i==height) cout << " " << xind << " " << yind;
 			else if(i==height-1) cout << "x, y : " << vx << " " << vy;
 			else if(i==height-2) cout << "xline, yline: " << xline.size() << " " << yline.size();
+			else if(i==-height+1) cout << "OPRC by oprcrinzc";
 			cout << endl;
 		}
 		vx += xind;
